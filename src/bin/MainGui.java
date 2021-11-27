@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 public class MainGui extends JFrame implements ActionListener {
 
@@ -29,6 +30,7 @@ public class MainGui extends JFrame implements ActionListener {
 	public MainGui() {
 
 
+
 		setBounds(0,0,1400,1400);
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
@@ -37,6 +39,7 @@ public class MainGui extends JFrame implements ActionListener {
 
 		core = new Core(getBounds());
 
+
 		panel = new DrawPanel() {
 			@Override
 			public void paint(Graphics2D g2d) {
@@ -44,7 +47,7 @@ public class MainGui extends JFrame implements ActionListener {
 			}
 		};
 		
-		panel.setBounds(29, 0, 1400, 1400);
+		panel.setBounds(29, 40, 1400, 1400);
 		panel.setRunning(false);
 		panel.setLayout(null);
 		getContentPane().add(panel);
@@ -86,13 +89,6 @@ public class MainGui extends JFrame implements ActionListener {
 				buttPanel.add(ctrlSave);
 				getContentPane().add(buttPanel);
 				
-				
-				ctrlInput = new JTextField();
-				ctrlInput.setBounds(393, 11, 147, 27);
-				buttPanel.add(ctrlInput);
-				ctrlInput.setColumns(10);
-			
-				
 				panel.init(ctrlStatus);
 
 
@@ -111,9 +107,12 @@ public class MainGui extends JFrame implements ActionListener {
 		
 		// Button Start
 		if (e.getSource() == ctrlStart) {
+			if (!core.DidStart()){
+				core.start();
+			}
+
 			core.toggleRunning(true);
 			panel.setRunning(true);
-			core.start();
 		}		
 		
 		// Button Stop
@@ -125,10 +124,9 @@ public class MainGui extends JFrame implements ActionListener {
 		}
 		// Button Reset
 		if (e.getSource() == ctrlSave) {
-
+			core.toggleRunning(false);
 			panel.setIndex(0);
 			panel.setRunning(false);
-			
 			
 		}
 	}

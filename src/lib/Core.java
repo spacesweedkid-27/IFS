@@ -24,9 +24,14 @@ public class Core extends Thread {
 	Default default_ = new Default();
 	ColorArray image;
 	boolean shouldRun = false;
+	boolean didStart = false;
 
 	private Color functionColor = default_.colors[default_.wurfel];
 
+
+	public boolean DidStart() {
+		return didStart;
+	}
 
 	public void toggleRunning(boolean bool){
 		shouldRun = bool;
@@ -34,6 +39,8 @@ public class Core extends Thread {
 
 	@Override
 	public void run() {
+		didStart = true;
+		while (true){
 		while (!shouldRun) {
 
 		}
@@ -42,7 +49,7 @@ public class Core extends Thread {
 			currentPoints = default_.calculate(currentPoints, null);
 
 		}
-	}
+	}}
 
 	public void paint(Graphics2D g) {
 		image.renderImage(g);
