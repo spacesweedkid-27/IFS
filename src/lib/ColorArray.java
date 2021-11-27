@@ -7,6 +7,11 @@ public class ColorArray {
     private Color[][] image;
     private Rectangle bounds;
 
+    private Color mix(Color color1, Color color2, double fac){
+        return new Color((int)(((-fac+1)*color1.getRed()+fac*color2.getRed())),(int)(((-fac+1)*color1.getGreen()+fac*color2.getGreen())),(int)(((-fac+1)*color1.getBlue()+fac*color2.getBlue())));
+    }
+
+
     public ColorArray(Rectangle bnds, int[] translate){
         this.bounds = bnds;
         this.translate = translate;
@@ -14,16 +19,19 @@ public class ColorArray {
         image = new Color[bounds.width][bounds.height];
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){
-                image[i][j] = Color.BLACK;
+                image[i][j] = Color.LIGHT_GRAY;
             }
         }
     }
 
     public void paint(double x, double y, Color c){
-        image[(int)(x*Core.scaling)+translate[0]][(int)(y*Core.scaling)+translate[1]] = c;
+        try {
+            image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]] = mix(c,image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]],0.999);
+        } catch (ArrayIndexOutOfBoundsException e){
+
+        }
     }
 
-    boolean didIWasExecute = false;
     public void renderImage(Graphics2D g){
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){

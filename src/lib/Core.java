@@ -13,31 +13,31 @@ public class Core extends Thread {
 		this.image = new ColorArray(bounds,translate);
 	}
 
-	int[] translate = {250,100};
+	public static Color randmcolor = new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
+
+
+	int[] translate = {280,0};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
-	static double scaling = 100;
+	static double scaling = 130;
 	Rectangle bounds;
 
 	Default default_ = new Default();
 	ColorArray image;
 
-
+	private Color functionColor = default_.colors[default_.wurfel];
 
 	@Override
 	public void run() {
 		for (;;) {
 
-			image.paint(currentPoints[0], currentPoints[1], Color.GREEN.darker().darker().darker());
+			image.paint(currentPoints[0], currentPoints[1], functionColor);
 			currentPoints = default_.calculate(currentPoints, null);
 
 		}
 	}
 
 	public void paint(Graphics2D g) {
-		//g.setColor(default_.colors[default_.wurfel]);
-
-
 		image.renderImage(g);
 	}
 
