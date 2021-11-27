@@ -1,7 +1,5 @@
 package lib.functions;
 
-import lib.Function;
-
 public class DEFAULT4 implements Function {
 	
 	@Override

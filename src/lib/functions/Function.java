@@ -1,4 +1,4 @@
-package lib;
+package lib.functions;
 
 public abstract interface Function {
 	public abstract double var1();

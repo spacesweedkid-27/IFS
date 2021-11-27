@@ -27,7 +27,7 @@ public class MainGui extends JFrame implements ActionListener {
 	public MainGui() {
 		Core core = new Core();
 		
-		
+		setBounds(0,0,1200,1200);
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
 		getContentPane().setLayout(null);
@@ -90,7 +90,7 @@ public class MainGui extends JFrame implements ActionListener {
 				
 				panel.init(ctrlStatus);
 
-		this.setSize(560, 516);
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
