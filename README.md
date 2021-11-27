@@ -1,1 +1,1 @@
-()["./IFS.png"]
+![Alt text](IFS.png "a title")
