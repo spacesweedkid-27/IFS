@@ -24,17 +24,19 @@ public class MainGui extends JFrame implements ActionListener {
 	private JLabel label_3;
 	private JLabel label_4;
 
+	private Core core;
+
 	public MainGui() {
 
-		
-		setBounds(0,0,1200,1200);
+
+		setBounds(0,0,1400,1400);
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+		core = new Core(getBounds());
 
-		Core core = new Core(getBounds());
 		panel = new DrawPanel() {
 			@Override
 			public void paint(Graphics2D g2d) {
@@ -42,7 +44,7 @@ public class MainGui extends JFrame implements ActionListener {
 			}
 		};
 		
-		panel.setBounds(29, 0, 1000, 1000);
+		panel.setBounds(29, 0, 1400, 1400);
 		panel.setRunning(false);
 		panel.setLayout(null);
 		getContentPane().add(panel);
@@ -110,6 +112,7 @@ public class MainGui extends JFrame implements ActionListener {
 		// Button Start
 		if (e.getSource() == ctrlStart) {
 			panel.setRunning(true);
+			core.start();
 		}		
 		
 		// Button Stop

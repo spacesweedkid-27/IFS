@@ -3,36 +3,35 @@ package lib;
 import java.awt.*;
 
 public class ColorArray {
+    private int[] translate;
     private Color[][] image;
     private Rectangle bounds;
 
-    public ColorArray(Rectangle bnds){
+    public ColorArray(Rectangle bnds, int[] translate){
         this.bounds = bnds;
+        this.translate = translate;
 
         image = new Color[bounds.width][bounds.height];
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){
-                image[i][j] = Color.WHITE;
+                image[i][j] = Color.BLACK;
             }
         }
     }
 
-    private void drawPoint(double[] points, Graphics2D g) {
-        g.drawRect( (int) (points[0]*Core.scaling), (int) (points[1]*Core.scaling), 1, 1);
+    public void paint(double x, double y, Color c){
+        image[(int)(x*Core.scaling)+translate[0]][(int)(y*Core.scaling)+translate[1]] = c;
     }
 
-    public void paint(int x, int y, Color c){
-        image[x][y] = c;
-    }
-
-    public void renderImage(Graphics2D g, int[] translate){
-
+    boolean didIWasExecute = false;
+    public void renderImage(Graphics2D g){
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){
-                g.setColor(image[i][j]);
-                drawPoint(new double[]{i,j},g);
+                    g.setColor(image[i][j]);
+                    g.drawRect(i,j,1,1);
+                }
             }
         }
     }
 
-}
+

@@ -10,13 +10,13 @@ public class Core extends Thread {
 
 	public Core(Rectangle bounds){
 		this.bounds = bounds;
-		this.image = new ColorArray(bounds);
-		start();
+		this.image = new ColorArray(bounds,translate);
 	}
 
+	int[] translate = {250,100};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
-	static double scaling = 70;
+	static double scaling = 100;
 	Rectangle bounds;
 
 	Default default_ = new Default();
@@ -26,15 +26,19 @@ public class Core extends Thread {
 
 	@Override
 	public void run() {
-		image.paint((int)currentPoints[0],(int)currentPoints[1],Color.BLACK);
-		currentPoints = default_.calculate(currentPoints,null);
+		for (;;) {
+
+			image.paint(currentPoints[0], currentPoints[1], Color.GREEN.darker().darker().darker());
+			currentPoints = default_.calculate(currentPoints, null);
+
+		}
 	}
 
 	public void paint(Graphics2D g) {
 		//g.setColor(default_.colors[default_.wurfel]);
-		int[] translate = {250,0};
 
-		image.renderImage(g,translate);
+
+		image.renderImage(g);
 	}
 
 
