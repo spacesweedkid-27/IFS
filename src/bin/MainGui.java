@@ -14,7 +14,7 @@ public class MainGui extends JFrame implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton ctrlStart, ctrlStop, ctrlReset;
+	private JButton ctrlStart, ctrlStop, ctrlSave;
 	private DrawPanel panel;
 	private JLabel ctrlStatus;
 	private JTextField ctrlInput;
@@ -55,9 +55,9 @@ public class MainGui extends JFrame implements ActionListener {
 				ctrlStop = new JButton("stop");
 				ctrlStop.setBounds(93, 12, 66, 25);
 				ctrlStop.addActionListener(this);
-				ctrlReset = new JButton("reset");
-				ctrlReset.setBounds(163, 12, 72, 25);
-				ctrlReset.addActionListener(this);
+				ctrlSave = new JButton("save");
+				ctrlSave.setBounds(163, 12, 72, 25);
+				ctrlSave.addActionListener(this);
 				JPanel buttPanel = new JPanel();
 				buttPanel.setBounds(0, 0, 552, 111);
 				buttPanel.setLayout(null);
@@ -83,7 +83,7 @@ public class MainGui extends JFrame implements ActionListener {
 				label_4.setBounds(69, 53, 0, 0);
 				buttPanel.add(label_4);
 				buttPanel.add(ctrlStop);
-				buttPanel.add(ctrlReset);
+				buttPanel.add(ctrlSave);
 				getContentPane().add(buttPanel);
 				
 				
@@ -111,20 +111,21 @@ public class MainGui extends JFrame implements ActionListener {
 		
 		// Button Start
 		if (e.getSource() == ctrlStart) {
+			core.toggleRunning(true);
 			panel.setRunning(true);
 			core.start();
 		}		
 		
 		// Button Stop
 		if (e.getSource() == ctrlStop) {
-			
+			core.toggleRunning(false);
 			panel.setRunning(false);			
 			panel.repaint();
 			
 		}
 		// Button Reset
-		if (e.getSource() == ctrlReset) {
-			
+		if (e.getSource() == ctrlSave) {
+
 			panel.setIndex(0);
 			panel.setRunning(false);
 			

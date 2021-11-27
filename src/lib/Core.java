@@ -21,16 +21,23 @@ public class Core extends Thread {
 	double currentPoints[] = startingPoints;
 	static double scaling = 130;
 	Rectangle bounds;
-
 	Default default_ = new Default();
 	ColorArray image;
+	boolean shouldRun = false;
 
 	private Color functionColor = default_.colors[default_.wurfel];
 
+
+	public void toggleRunning(boolean bool){
+		shouldRun = bool;
+	}
+
 	@Override
 	public void run() {
-		for (;;) {
+		while (!shouldRun) {
 
+		}
+		while (shouldRun) {
 			image.paint(currentPoints[0], currentPoints[1], functionColor);
 			currentPoints = default_.calculate(currentPoints, null);
 
