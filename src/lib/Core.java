@@ -1,27 +1,41 @@
 package lib;
 
+import bin.MainGui;
 import lib.functionsets.Default;
 import lib.functionsets.Functionset;
 
 import java.awt.*;
 
-public class Core {
-	
+public class Core extends Thread {
+
+	public Core(Rectangle bounds){
+		this.bounds = bounds;
+		this.image = new ColorArray(bounds);
+		start();
+	}
+
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
-	double scaling = 100;
-	Functionset default_ = new Default();
-	
-	
-	private void drawPoint(double[] points, Graphics2D g) {
-		g.drawRect( (int) (points[0]*scaling), (int) (points[1]*scaling), 1, 1);
-	}
-	
-	public void paint(Graphics2D g) {
+	static double scaling = 70;
+	Rectangle bounds;
 
-		g.translate(500/2, 0);
-		drawPoint(currentPoints, g);
-		currentPoints = default_.calculate(currentPoints);
+	Default default_ = new Default();
+	ColorArray image;
+
+
+
+	@Override
+	public void run() {
+		image.paint((int)currentPoints[0],(int)currentPoints[1],Color.BLACK);
+		currentPoints = default_.calculate(currentPoints,null);
 	}
+
+	public void paint(Graphics2D g) {
+		//g.setColor(default_.colors[default_.wurfel]);
+		int[] translate = {250,0};
+
+		image.renderImage(g,translate);
+	}
+
 
 }

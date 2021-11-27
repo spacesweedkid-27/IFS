@@ -25,13 +25,16 @@ public class MainGui extends JFrame implements ActionListener {
 	private JLabel label_4;
 
 	public MainGui() {
-		Core core = new Core();
+
 		
 		setBounds(0,0,1200,1200);
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
 		getContentPane().setLayout(null);
-		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
+		Core core = new Core(getBounds());
 		panel = new DrawPanel() {
 			@Override
 			public void paint(Graphics2D g2d) {
@@ -94,6 +97,8 @@ public class MainGui extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+
+
 
 	public static void main(String[] args) {
 		new MainGui();

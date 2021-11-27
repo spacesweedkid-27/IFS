@@ -9,7 +9,7 @@ public class DEFAULT2 implements Function {
 
 	@Override
 	public double var2() {
-		return 0.04;
+		return 1;
 	}
 
 	@Override
