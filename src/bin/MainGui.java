@@ -125,8 +125,8 @@ public class MainGui extends JFrame implements ActionListener {
 
 			dumpThePic.dump(panel);
 
-			dumpThePic.setFaltung(new Faltung());
-			dumpThePic.transform();
+			dumpThePic.setFaltung(new Sobel());
+			dumpThePic.transform(Sobel.SobelType.G);
 			dumpThePic.display();
 		}
 	}
