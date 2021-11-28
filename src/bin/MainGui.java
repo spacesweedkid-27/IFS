@@ -25,11 +25,8 @@ public class MainGui extends JFrame implements ActionListener {
 	private DrawPanel panel;
 	private JLabel ctrlStatus;
 	private JTextField ctrlInput;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_3;
-	private JLabel label_4;
+	private JLabel steps;
+
 
 	private Core core;
 
@@ -50,6 +47,7 @@ public class MainGui extends JFrame implements ActionListener {
 			@Override
 			public void paint(Graphics2D g2d) {
 				core.paint(g2d);
+				steps.setText("steps: "+ core.getSteps());
 			}
 		};
 		
@@ -57,7 +55,8 @@ public class MainGui extends JFrame implements ActionListener {
 		panel.setRunning(false);
 		panel.setLayout(null);
 		getContentPane().add(panel);
-		
+
+
 				ctrlStart = new JButton("start");
 				ctrlStart.setBounds(12, 12, 69, 25);
 				ctrlStart.addActionListener(this);
@@ -72,25 +71,11 @@ public class MainGui extends JFrame implements ActionListener {
 				buttPanel.setLayout(null);
 				buttPanel.add(ctrlStart);
 				
-				label = new JLabel("test");
-				label.setBounds(69, 53, 0, 0);
-				buttPanel.add(label);
-				
-				label_1 = new JLabel("test2");
-				label_1.setBounds(69, 53, 0, 0);
-				buttPanel.add(label_1);
-				
-				label_2 = new JLabel("");
-				label_2.setBounds(69, 53, 0, 0);
-				buttPanel.add(label_2);
-				
-				label_3 = new JLabel("");
-				label_3.setBounds(69, 53, 0, 0);
-				buttPanel.add(label_3);
-				
-				label_4 = new JLabel("");
-				label_4.setBounds(69, 53, 0, 0);
-				buttPanel.add(label_4);
+				steps = new JLabel("steps: "+ core.getSteps());
+				steps.setBounds(250, 20, 100, 12);
+				buttPanel.add(steps);
+
+
 				buttPanel.add(ctrlStop);
 				buttPanel.add(ctrlSave);
 				getContentPane().add(buttPanel);
@@ -140,7 +125,7 @@ public class MainGui extends JFrame implements ActionListener {
 
 			dumpThePic.dump(panel);
 
-			dumpThePic.setFaltung(new Median());
+			dumpThePic.setFaltung(new Faltung());
 			dumpThePic.transform();
 			dumpThePic.display();
 		}

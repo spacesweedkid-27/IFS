@@ -29,8 +29,13 @@ public class Core extends Thread {
 	double speed = 1;
 
 
+	int steps = 0;
+
 	private Color functionColor = default_.colors[default_.wurfel];
 
+	public int getSteps() {
+		return steps;
+	}
 
 	public boolean DidStart() {
 		return didStart;
@@ -48,6 +53,7 @@ public class Core extends Thread {
 
 		}
 		while (shouldRun) {
+			steps++;
 			functionColor = default_.colors[default_.wurfel];
 			image.paint(currentPoints[0], currentPoints[1], functionColor);
 			currentPoints = default_.calculate(currentPoints, null);

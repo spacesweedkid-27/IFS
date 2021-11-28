@@ -71,7 +71,7 @@ public final class PictureViewer implements ActionListener {
 			
 			frame.setJMenuBar(menuBar);
 			frame.setContentPane(getJLabel());
-			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setTitle(filename);
 			frame.setResizable(false);
 			frame.pack();

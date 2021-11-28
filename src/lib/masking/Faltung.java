@@ -9,7 +9,7 @@ import lib.masking.examples.Sobel;
 
 public class Faltung {
 	private Picture picture;
-	private double[][] mask = new double[3][3];
+	private double[][] mask = {{0,0,0},{0,9,0},{0,0,0}};
 	private double[][] input = new double[3][3];
 	private int value;
 	

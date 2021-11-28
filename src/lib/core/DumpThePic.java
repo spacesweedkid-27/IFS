@@ -43,6 +43,7 @@ public class DumpThePic {
 
     public void display() {
         pw = new PictureViewer(picture.getPicture());
+
         pw.show();
     }
 }
