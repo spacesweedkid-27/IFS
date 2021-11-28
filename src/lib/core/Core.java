@@ -1,6 +1,7 @@
-package lib;
+package lib.core;
 
 import bin.MainGui;
+import lib.ColorArray;
 import lib.functionsets.Default;
 import lib.functionsets.Functionset;
 
@@ -19,12 +20,14 @@ public class Core extends Thread {
 	int[] translate = {280,0};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
-	static double scaling = 130;
+	public static double scaling = 130;
 	Rectangle bounds;
 	Default default_ = new Default();
 	ColorArray image;
 	boolean shouldRun = false;
 	boolean didStart = false;
+	double speed = 1;
+
 
 	private Color functionColor = default_.colors[default_.wurfel];
 
@@ -45,6 +48,7 @@ public class Core extends Thread {
 
 		}
 		while (shouldRun) {
+			functionColor = default_.colors[default_.wurfel];
 			image.paint(currentPoints[0], currentPoints[1], functionColor);
 			currentPoints = default_.calculate(currentPoints, null);
 

@@ -1,5 +1,7 @@
 package lib;
 
+import lib.core.Core;
+
 import java.awt.*;
 
 public class ColorArray {
@@ -19,7 +21,7 @@ public class ColorArray {
         image = new Color[bounds.width][bounds.height];
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){
-                image[i][j] = Color.LIGHT_GRAY;
+                image[i][j] = Color.WHITE;
             }
         }
     }
@@ -36,7 +38,7 @@ public class ColorArray {
         for (int i = 0; i < bounds.width; i++){
             for (int j = 0; j < bounds.height; j++){
                     g.setColor(image[i][j]);
-                    g.drawRect(i,j,1,1);
+                    g.drawRect(i,j,0,0);
                 }
             }
         }

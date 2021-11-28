@@ -1,7 +1,13 @@
 package bin;
 
-import lib.Core;
+import lib.core.Core;
 import lib.DrawPanel;
+import lib.core.DumpThePic;
+import lib.informatics4kids.Picture;
+import lib.informatics4kids.PictureViewer;
+import lib.masking.Faltung;
+import lib.masking.examples.Median;
+import lib.masking.examples.Sobel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +41,7 @@ public class MainGui extends JFrame implements ActionListener {
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
 		getContentPane().setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 
 		core = new Core(getBounds());
 
@@ -58,7 +64,7 @@ public class MainGui extends JFrame implements ActionListener {
 				ctrlStop = new JButton("stop");
 				ctrlStop.setBounds(93, 12, 66, 25);
 				ctrlStop.addActionListener(this);
-				ctrlSave = new JButton("save");
+				ctrlSave = new JButton("dump");
 				ctrlSave.setBounds(163, 12, 72, 25);
 				ctrlSave.addActionListener(this);
 				JPanel buttPanel = new JPanel();
@@ -127,7 +133,16 @@ public class MainGui extends JFrame implements ActionListener {
 			core.toggleRunning(false);
 			panel.setIndex(0);
 			panel.setRunning(false);
-			
+
+			setVisible(false);
+
+			DumpThePic dumpThePic = new DumpThePic();
+
+			dumpThePic.dump(panel);
+
+			dumpThePic.setFaltung(new Median());
+			dumpThePic.transform();
+			dumpThePic.display();
 		}
 	}
 }
