@@ -8,11 +8,15 @@ public class ColorArray {
     private int[] translate;
     private Color[][] image;
     private Rectangle bounds;
+    private double fac;
 
     private Color mix(Color color1, Color color2, double fac){
         return new Color((int)(((-fac+1)*color1.getRed()+fac*color2.getRed())),(int)(((-fac+1)*color1.getGreen()+fac*color2.getGreen())),(int)(((-fac+1)*color1.getBlue()+fac*color2.getBlue())));
     }
 
+    public void setFac(double fac) {
+    	this.fac = fac;
+    }
 
     public ColorArray(Rectangle bnds, int[] translate){
         this.bounds = bnds;
@@ -28,7 +32,7 @@ public class ColorArray {
 
     public void paint(double x, double y, Color c){
         try {
-            image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]] = mix(c,image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]],0.999);
+            image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]] = mix(c,image[(int) (x * Core.scaling) + translate[0]][(int) (y * Core.scaling) + translate[1]],fac);
         } catch (ArrayIndexOutOfBoundsException e){
 
         }

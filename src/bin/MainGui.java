@@ -40,7 +40,7 @@ public class MainGui extends JFrame implements ActionListener {
 		getContentPane().setLayout(null);
 
 
-		core = new Core(getBounds());
+		core = new Core(getBounds(),Core.RenderMode.BeautifulButSlow);
 
 
 		panel = new DrawPanel() {
@@ -61,10 +61,10 @@ public class MainGui extends JFrame implements ActionListener {
 				ctrlStart.setBounds(12, 12, 69, 25);
 				ctrlStart.addActionListener(this);
 				ctrlStop = new JButton("stop");
-				ctrlStop.setBounds(93, 12, 66, 25);
+				ctrlStop.setBounds(88, 12, 66, 25);
 				ctrlStop.addActionListener(this);
 				ctrlSave = new JButton("dump");
-				ctrlSave.setBounds(163, 12, 72, 25);
+				ctrlSave.setBounds(163, 12, 80, 25);
 				ctrlSave.addActionListener(this);
 				JPanel buttPanel = new JPanel();
 				buttPanel.setBounds(0, 0, 552, 111);
@@ -72,7 +72,7 @@ public class MainGui extends JFrame implements ActionListener {
 				buttPanel.add(ctrlStart);
 				
 				steps = new JLabel("steps: "+ core.getSteps());
-				steps.setBounds(250, 20, 100, 12);
+				steps.setBounds(250, 20, 300, 12);
 				buttPanel.add(steps);
 
 
@@ -108,12 +108,11 @@ public class MainGui extends JFrame implements ActionListener {
 		
 		// Button Stop
 		if (e.getSource() == ctrlStop) {
-			core.toggleRunning(false);
-			panel.setRunning(false);			
+			core.toggleRunning(false);			
 			panel.repaint();
 			
 		}
-		// Button Reset
+		// Button Dump
 		if (e.getSource() == ctrlSave) {
 			core.toggleRunning(false);
 			panel.setIndex(0);

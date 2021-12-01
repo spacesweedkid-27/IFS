@@ -2,16 +2,43 @@ package lib.core;
 
 import bin.MainGui;
 import lib.ColorArray;
+import lib.functionsets.BetterDefault;
 import lib.functionsets.Default;
 import lib.functionsets.Functionset;
 
 import java.awt.*;
 
-public class Core extends Thread {
 
-	public Core(Rectangle bounds){
+
+public class Core extends Thread {
+	
+	public enum RenderMode{
+		FastButUgly, Medium, BeautifulButSlow 
+	}
+	
+	
+	public Core(Rectangle bounds, RenderMode rendermode){
 		this.bounds = bounds;
 		this.image = new ColorArray(bounds,translate);
+		
+		switch (rendermode) {
+		case FastButUgly: {
+			image.setFac(0);
+		}
+		
+		case Medium: {
+			image.setFac(0.9);
+		}
+		
+		case BeautifulButSlow: {
+			image.setFac(0.99999);
+		}
+		
+		default:{
+			image.setFac(0);
+		}
+		}
+		
 	}
 
 	public static Color randmcolor = new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
@@ -22,7 +49,7 @@ public class Core extends Thread {
 	double currentPoints[] = startingPoints;
 	public static double scaling = 130;
 	Rectangle bounds;
-	Default default_ = new Default();
+	BetterDefault default_ = new BetterDefault();
 	ColorArray image;
 	boolean shouldRun = false;
 	boolean didStart = false;
