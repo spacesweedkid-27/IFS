@@ -11,8 +11,13 @@ public class ColorArray {
     private double fac;
 
     private Color mix(Color color1, Color color2, double fac){
-        return new Color((int)(((-fac+1)*color1.getRed()+fac*color2.getRed())),(int)(((-fac+1)*color1.getGreen()+fac*color2.getGreen())),(int)(((-fac+1)*color1.getBlue()+fac*color2.getBlue())));
-    }
+        try {
+            return new Color((int) (((-fac + 1) * color1.getRed() + fac * color2.getRed())), (int) (((-fac + 1) * color1.getGreen() + fac * color2.getGreen())), (int) (((-fac + 1) * color1.getBlue() + fac * color2.getBlue())));
+        } catch (NullPointerException e){
+            return Color.BLACK;
+        }
+        }
+
 
     public void setFac(double fac) {
     	this.fac = fac;

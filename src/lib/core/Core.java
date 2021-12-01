@@ -5,6 +5,7 @@ import lib.ColorArray;
 import lib.functionsets.BetterDefault;
 import lib.functionsets.Default;
 import lib.functionsets.Functionset;
+import lib.functionsets.RandomFunction;
 
 import java.awt.*;
 
@@ -22,34 +23,36 @@ public class Core extends Thread {
 		this.image = new ColorArray(bounds,translate);
 		
 		switch (rendermode) {
-		case FastButUgly: {
-			image.setFac(0);
-		}
-		
-		case Medium: {
+
+			case Medium: {
 			image.setFac(0.9);
+			return;
 		}
 		
 		case BeautifulButSlow: {
 			image.setFac(0.99999);
+			return;
 		}
 		
-		default:{
+		case FastButUgly:{
 			image.setFac(0);
+			return;
 		}
 		}
 		
 	}
 
-	public static Color randmcolor = new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
+	public static Color getRandmcolor() {
+		return new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
+	}
 
 
-	int[] translate = {280,0};
+	int[] translate = {1400/2,1400/2};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
 	public static double scaling = 130;
 	Rectangle bounds;
-	BetterDefault default_ = new BetterDefault();
+	RandomFunction default_ = new RandomFunction();
 	ColorArray image;
 	boolean shouldRun = false;
 	boolean didStart = false;

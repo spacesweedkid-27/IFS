@@ -26,6 +26,7 @@ public class MainGui extends JFrame implements ActionListener {
 	private JLabel ctrlStatus;
 	private JTextField ctrlInput;
 	private JLabel steps;
+	private JButton ctrlRestart;
 
 
 	private Core core;
@@ -51,7 +52,7 @@ public class MainGui extends JFrame implements ActionListener {
 			}
 		};
 		
-		panel.setBounds(29, 40, 1400, 1400);
+		panel.setBounds(29, 40, 2000, 2000);
 		panel.setRunning(false);
 		panel.setLayout(null);
 		getContentPane().add(panel);
@@ -66,16 +67,22 @@ public class MainGui extends JFrame implements ActionListener {
 				ctrlSave = new JButton("dump");
 				ctrlSave.setBounds(163, 12, 80, 25);
 				ctrlSave.addActionListener(this);
+
+
 				JPanel buttPanel = new JPanel();
 				buttPanel.setBounds(0, 0, 552, 111);
 				buttPanel.setLayout(null);
 				buttPanel.add(ctrlStart);
+
+				ctrlRestart = new JButton("restart");
+				ctrlRestart.setBounds(buttPanel.getWidth()-80, 12, 80, 25);
+				ctrlRestart.addActionListener(this);
 				
 				steps = new JLabel("steps: "+ core.getSteps());
 				steps.setBounds(250, 20, 300, 12);
 				buttPanel.add(steps);
 
-
+				buttPanel.add(ctrlRestart);
 				buttPanel.add(ctrlStop);
 				buttPanel.add(ctrlSave);
 				getContentPane().add(buttPanel);
@@ -127,6 +134,12 @@ public class MainGui extends JFrame implements ActionListener {
 			dumpThePic.setFaltung(new Sobel());
 			dumpThePic.transform(Sobel.SobelType.G);
 			dumpThePic.display();
+		}
+
+		if (e.getSource() == ctrlRestart){
+			this.setVisible(false);
+			new MainGui();
+
 		}
 	}
 }

@@ -1,5 +1,5 @@
 package lib.functions;
-
+@Deprecated
 public abstract interface Function {
 	public abstract double var1();
 	public abstract double var2();

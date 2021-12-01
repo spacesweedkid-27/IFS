@@ -1,5 +1,5 @@
 package lib.functions;
-
+@Deprecated
 public class DEFAULT4 implements Function {
 	
 	@Override

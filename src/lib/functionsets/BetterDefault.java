@@ -14,7 +14,7 @@ public final class BetterDefault extends Functionset {
 	public static Color[] colors = {Color.BLUE,Color.RED,Color.GREEN,Color.MAGENTA};
 	public static int wurfel;
 	
-	static double[][] privateDef = new double[][] {
+	public static double[][] privateDef = new double[][] {
 		{0.0,0.0,0.0,0.16,0.0,0.0,0.01},
 		{0.85,0.04,-0.04,0.85,0.0,1.6,0.85},
 		{0.2,-0.26,0.23,0.11,0.0,1.6,0.07},

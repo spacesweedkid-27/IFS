@@ -8,7 +8,7 @@ import lib.functions.DEFAULT3;
 import lib.functions.DEFAULT4;
 
 import java.awt.*;
-
+@Deprecated
 public final class Default extends Functionset {
 
 	public Color[] colors = {Color.BLUE,Color.RED,Color.GREEN,Color.MAGENTA};
