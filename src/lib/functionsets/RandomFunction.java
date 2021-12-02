@@ -8,12 +8,26 @@ import java.util.Random;
 
 public class RandomFunction extends Functionset{
 
-    public static double[][] privateDef = new double[100][7];
+    public static double[][] privateDef = new double[50][7];
 
 
     public static Color[] colors;
     public static int wurfel;
     public double[] tempInput;
+    
+    private Color[] randmColors(int n) {
+    	Color[] temp = new Color[n];
+    	
+    	for (int i = 0; i < n; i++) {
+    		temp[i] = Color.getHSBColor((float) ((((double)i)/((double)n))), 1, 1);
+
+    	}
+    	
+    	
+   
+    	return temp;
+    }
+    
 
     private double[] devideRandom(int n){
         double[] temp = new double[n];
@@ -44,19 +58,22 @@ public class RandomFunction extends Functionset{
     }
 
     public RandomFunction(){
-        for (int i = 0; i < privateDef.length; i++){
+    	
+    	colors = new Color[privateDef.length];
+    	colors = randmColors(privateDef.length);
+    	
+    	for (int i = 0; i < privateDef.length; i++){
             for (int j = 0; j < privateDef[0].length-1; j++){
                 privateDef[i][j] = 2*(Math.random()-0.5);
             }
         }
         double[] dvr = devideRandom(privateDef.length);
         tempInput = new double[privateDef.length];
-        colors = new Color[privateDef.length];
-
+        
         for (int i = 0; i < privateDef.length; i++) {
             privateDef[i][6] = dvr[i];
             tempInput[i] = privateDef[i][6];
-            colors[i] = Core.getRandmcolor();
+            
         }
 
 

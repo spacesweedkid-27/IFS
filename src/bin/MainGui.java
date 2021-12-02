@@ -24,24 +24,31 @@ public class MainGui extends JFrame implements ActionListener {
 	private JButton ctrlStart, ctrlStop, ctrlSave;
 	private DrawPanel panel;
 	private JLabel ctrlStatus;
-	private JTextField ctrlInput;
 	private JLabel steps;
 	private JButton ctrlRestart;
+	
+	private Rectangle boundsBerechPanel = new Rectangle(29,40,1000,1000);
 
 
 	private Core core;
 
 	public MainGui() {
 
+		Rectangle getExtBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().getBounds();
 
-
-		setBounds(0,0,1400,1400);
+		setBounds(0,0,getExtBounds.width/2,(int)(getExtBounds.height/1.4));
+		
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setUndecorated(true);
+		
 		setTitle("Friedrich-Schiller-Gymnasium");
 		setResizable(true);
 		getContentPane().setLayout(null);
+		
+		
+		
 
-
-		core = new Core(getBounds(),Core.RenderMode.BeautifulButSlow);
+		core = new Core(boundsBerechPanel,Core.RenderMode.BeautifulButSlow);
 
 
 		panel = new DrawPanel() {
@@ -52,7 +59,7 @@ public class MainGui extends JFrame implements ActionListener {
 			}
 		};
 		
-		panel.setBounds(29, 40, 2000, 2000);
+		panel.setBounds(boundsBerechPanel);
 		panel.setRunning(false);
 		panel.setLayout(null);
 		getContentPane().add(panel);
@@ -117,6 +124,7 @@ public class MainGui extends JFrame implements ActionListener {
 		if (e.getSource() == ctrlStop) {
 			core.toggleRunning(false);			
 			panel.repaint();
+			System.exit(0);
 			
 		}
 		// Button Dump
@@ -137,8 +145,7 @@ public class MainGui extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == ctrlRestart){
-			this.setVisible(false);
-			new MainGui();
+			core = new Core(boundsBerechPanel, Core.RenderMode.BeautifulButSlow);
 
 		}
 	}

@@ -6,6 +6,7 @@ import lib.functionsets.BetterDefault;
 import lib.functionsets.Default;
 import lib.functionsets.Functionset;
 import lib.functionsets.RandomFunction;
+import lib.functionsets.SecondPreset;
 
 import java.awt.*;
 
@@ -46,13 +47,13 @@ public class Core extends Thread {
 		return new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
 	}
 
-
-	int[] translate = {1400/2,1400/2};
+	public static double scaling = 100;
+	int[] translate = {(int)(1400*(40/scaling)),(int)(1400*(40/scaling)-600)};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
-	public static double scaling = 130;
+	
 	Rectangle bounds;
-	RandomFunction default_ = new RandomFunction();
+	SecondPreset default_ = new SecondPreset();
 	ColorArray image;
 	boolean shouldRun = false;
 	boolean didStart = false;
@@ -60,7 +61,8 @@ public class Core extends Thread {
 
 
 	int steps = 0;
-
+	
+	
 	private Color functionColor = default_.colors[default_.wurfel];
 
 	public int getSteps() {
@@ -84,7 +86,11 @@ public class Core extends Thread {
 		}
 		while (shouldRun) {
 			steps++;
+			// Normal function
 			functionColor = default_.colors[default_.wurfel];
+			
+			// Black override
+			// functionColor = Color.BLACK;
 			image.paint(currentPoints[0], currentPoints[1], functionColor);
 			currentPoints = default_.calculate(currentPoints, null);
 
