@@ -2,11 +2,7 @@ package lib.core;
 
 import bin.MainGui;
 import lib.ColorArray;
-import lib.functionsets.BetterDefault;
-import lib.functionsets.Default;
-import lib.functionsets.Functionset;
-import lib.functionsets.RandomFunction;
-import lib.functionsets.SecondPreset;
+import lib.functionsets.*;
 
 import java.awt.*;
 
@@ -47,13 +43,17 @@ public class Core extends Thread {
 		return new Color((int)(255*Math.random()),(int)(255*Math.random()),(int)(255*Math.random()));
 	}
 
-	public static double scaling = 100;
-	int[] translate = {(int)(1400*(40/scaling)),(int)(1400*(40/scaling)-600)};
+	public String getPresetName(){
+		return default_.getClass().getName();
+	}
+
+	public static double scaling = 300;
+	int[] translate = {(int)(1400*(40/scaling)),(int)(1400*(40/scaling))};
 	double startingPoints[] = {0,0};
 	double currentPoints[] = startingPoints;
 	
 	Rectangle bounds;
-	SecondPreset default_ = new SecondPreset();
+	ThirdPreset default_ = new ThirdPreset();
 	ColorArray image;
 	boolean shouldRun = false;
 	boolean didStart = false;

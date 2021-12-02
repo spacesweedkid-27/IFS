@@ -14,7 +14,7 @@ public class ColorArray {
         try {
             return new Color((int) (((-fac + 1) * color1.getRed() + fac * color2.getRed())), (int) (((-fac + 1) * color1.getGreen() + fac * color2.getGreen())), (int) (((-fac + 1) * color1.getBlue() + fac * color2.getBlue())));
         } catch (NullPointerException e){
-            return Color.BLACK;
+            return Color.GRAY;
         }
         }
 

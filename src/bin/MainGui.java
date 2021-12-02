@@ -39,9 +39,9 @@ public class MainGui extends JFrame implements ActionListener {
 		setBounds(0,0,getExtBounds.width/2,(int)(getExtBounds.height/1.4));
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		setUndecorated(true);
+		// setUndecorated(true);
 		
-		setTitle("Friedrich-Schiller-Gymnasium");
+
 		setResizable(true);
 		getContentPane().setLayout(null);
 		
@@ -96,9 +96,9 @@ public class MainGui extends JFrame implements ActionListener {
 				
 				panel.init(ctrlStatus);
 
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+		setTitle("Integrierte Funktionssysteme: "+ core.getPresetName());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 

@@ -15,7 +15,7 @@ public class RandomFunction extends Functionset{
     public static int wurfel;
     public double[] tempInput;
     
-    private Color[] randmColors(int n) {
+    public static Color[] randmColors(int n) {
     	Color[] temp = new Color[n];
     	
     	for (int i = 0; i < n; i++) {
